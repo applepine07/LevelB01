@@ -92,24 +92,24 @@ include_once "base.php";
 					?>
 					<div class="t" onclick="pp(2)"><img src="img/dn.jpg"></div>
 					<script>
-						var nowpage = 0,
-							num = <?= $Image->math("count", "*", ['sh' => 1]); ?>;
+						var nowpage=0,
+							num=<?=$Image->math('count','*',['sh'=>1]);?>;
+							function pp(x){
+								var s,t;
+								if(x==1 && nowpage>=1){
+									nowpage--;
+								}
 
-						function pp(x) {
-							var s, t;
-							if (x == 1 && nowpage - 1 >= 0) {
-								nowpage--;
+								if(x==2 && nowpage<(num-3)){
+									nowpage++;
+								}
+								$('.im').hide();
+								for(s=0;s<=2;s++){
+									t=s*1+nowpage*1;
+									$('#ssaa'+t).show();
+								}
 							}
-							if (x == 2 && (nowpage + 3) < num) {
-								nowpage++;
-							}
-							$(".im").hide()
-							for (s = 0; s <= 2; s++) {
-								t = s * 1 + nowpage * 1;
-								$("#ssaa" + t).show()
-							}
-						}
-						pp(1)
+							pp(1);
 					</script>
 				</div>
 			</div>

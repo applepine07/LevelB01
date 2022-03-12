@@ -88,11 +88,13 @@ if(!isset($_SESSION['login'])){
 					</tbody>
 				</table>
 				<?php
-				$do = isset($_GET['do']) ? $_GET['do'] : 'title';
-				$file = "./back/" . $do . ".php";
-				if (file_exists(($file))) {
+				// 為何有2個問號見下行註解
+				// 有getdo嗎(?)，有的話等於getdo(用?代表自己)，沒有就等於title
+				$do=$_GET['do']??'title';
+				$file="./back/".$do.".php";
+				if(file_exists($file)){
 					include $file;
-				} else {
+				}else{
 					include "./back/title.php";
 				}
 				?>
