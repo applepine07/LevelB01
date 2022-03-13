@@ -92,24 +92,29 @@ include_once "base.php";
 					?>
 					<div class="t" onclick="pp(2)"><img src="img/dn.jpg"></div>
 					<script>
-						var nowpage=0,
-							num=<?=$Image->math('count','*',['sh'=>1]);?>;
-							function pp(x){
-								var s,t;
-								if(x==1 && nowpage>=1){
-									nowpage--;
-								}
+						var nowpage = 0,
+							num = <?= $Image->math("count", "*", ['sh' => 1]); ?>;
 
-								if(x==2 && nowpage<(num-3)){
-									nowpage++;
-								}
-								$('.im').hide();
-								for(s=0;s<=2;s++){
-									t=s*1+nowpage*1;
-									$('#ssaa'+t).show();
-								}
+						function pp(x) {
+							var s, t;
+                            // x=1是向上
+							if (x == 1 && nowpage - 1 >= 0) {
+                                // 現在的頁面是1或多於1頁時，就可以往上
+								nowpage--;
 							}
-							pp(1);
+                            // x=2是向下
+							if (x == 2 && (nowpage + 3) < num) {
+                                // 頁面小於總數-3時(因為一次顯示3頁)，就可以再往下
+								nowpage++;
+							}
+							$(".im").hide()
+							for (s = 0; s <= 2; s++) {
+								t = s * 1 + nowpage * 1;
+								$("#ssaa" + t).show()
+							}
+						}
+                        // 預設pp是1，先寫好上面，再在下面回呼預設pp是1
+						pp(1)
 					</script>
 				</div>
 			</div>
